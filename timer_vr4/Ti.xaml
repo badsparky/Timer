@@ -1,0 +1,108 @@
+﻿<Page x:Class="timer_vr4.Ti"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:timer_vr4"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Ti" >
+
+    <Page.Resources>
+        
+        <ControlTemplate x:Key="Button" TargetType="Button">
+            <Grid >
+                <Ellipse x:Name="MiddleButton" Fill="{StaticResource white}"/>
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter TargetName="MiddleButton" Property="Fill" Value="{StaticResource white}" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+
+        <Style x:Key="RightButton" TargetType="Border">
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="BorderBrush" Value="{StaticResource green}"/>
+            <Setter Property="Width" Value="130"/>
+            <Setter Property="Height" Value="130"/>
+            <Setter Property="CornerRadius" Value="200"/>
+            <Setter Property="Margin" Value="0 0 20 0"/>
+        </Style>
+        
+        <Style x:Key="MiddleButton" TargetType="Border">
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="BorderBrush" Value="{StaticResource green}"/>
+            <Setter Property="Width" Value="380"/>
+            <Setter Property="Height" Value="380"/>
+            <Setter Property="CornerRadius" Value="200"/>
+        </Style>
+
+        <Style x:Key="LeftButton" TargetType="Border">
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="BorderBrush" Value="{StaticResource green}"/>
+            <Setter Property="Width" Value="130"/>
+            <Setter Property="Height" Value="130"/>
+            <Setter Property="CornerRadius" Value="200"/>
+            <Setter Property="Margin" Value="20 0 0 0"/>
+        </Style>
+        <Storyboard x:Key="ElipseSizeChange" >
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverElipse" Storyboard.TargetProperty="(FrameworkElement.Width)">
+                <EasingDoubleKeyFrame KeyTime="00:00:05" Value="0" x:Name="ElipseY"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="OverElipse" Storyboard.TargetProperty="(FrameworkElement.Height)" >
+                <EasingDoubleKeyFrame KeyTime="00:00:05" Value="0" x:Name="ElipseX"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+
+
+    </Page.Resources>
+
+
+
+    <Grid Background="{StaticResource white}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="175*"/>
+            <ColumnDefinition Width="450*"/>
+            <ColumnDefinition Width="175*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Grid Grid.Column="0">
+            <Border x:Name="LeftButton" Style="{StaticResource LeftButton}">
+                <Button  Template="{StaticResource Button}" Content="stop" FontSize="40" FontWeight="SemiBold" Foreground="{StaticResource black}" Click="LeftButton_Click" />
+            </Border>
+        </Grid>
+
+
+
+        <Grid Grid.Column="1">
+            <Border x:Name="MiddleButton" Style="{StaticResource MiddleButton}" Panel.ZIndex="2">
+                <Button Template="{StaticResource Button}" Content="00:00:00" FontSize="80" FontWeight="SemiBold" x:Name="MiddleContent" Foreground="{StaticResource orange}" />
+            </Border>
+        </Grid>
+
+        <Grid Grid.Column="2">
+            <Border x:Name="RightButton" Style="{StaticResource RightButton}">
+                <Button Template="{StaticResource Button}" Content="start" FontSize="40" FontWeight="SemiBold" Foreground="{StaticResource black}" Click="RightButton_Click" />
+            </Border>
+        </Grid>
+
+
+        <!--<Grid Grid.Column="1" Opacity="10" Panel.ZIndex="2">
+            <Ellipse Fill="Aqua" Opacity="0.1" Name="OverElipse" Height="380" Width="380"/>
+            
+        </Grid>-->
+        <Grid Grid.Column="1"  Panel.ZIndex="10">
+            <TextBox x:Name="SetTimer" Height="80" Width="300" TextChanged="SetTimer_TextChanged" MaxLength="6" Opacity="0" Background="Transparent" MouseEnter="SetTimer_MouseEnter" MouseLeave="SetTimer_MouseLeave" />
+        </Grid>
+
+
+
+
+    </Grid>
+    
+</Page>
