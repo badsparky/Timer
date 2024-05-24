@@ -1,8 +1,8 @@
-# Timer VR4
+# Timer
 
 ## Description
 
-Timer VR4 is a Windows Presentation Foundation (WPF) application built with .NET 6.0. It provides a simple and intuitive interface for setting and managing timers.
+This App is a Windows Presentation Foundation (WPF) application built with .NET 6.0. It provides a simple and intuitive interface for setting and managing timers.
 
 ## Features
 
